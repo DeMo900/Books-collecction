@@ -24,4 +24,17 @@ coverurl
 rating
 reviews
 createdAt
+[
+  "Fiction",
+  "Non-Fiction",
+  "Fantasy",
+  "Science Fiction",
+  "Romance",
+  "Thriller",
+  "Mystery",
+  "Biography",
+  "Self-Help",
+  "History",
+  "Poetry"
+]
 */

@@ -1,11 +1,10 @@
-
-const express = require("express");
-const router = express.Router();
-
-
-module.exports = {
-    router,
+const bm = require("/home/adam/coding/Books-collecction/models/book.js")
+//home 
+let Gethome = (req,res)=>{
+    res.render("home")
 }
+module.exports = {Gethome}
+
 
 
 /*

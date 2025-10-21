@@ -1,7 +1,7 @@
 //modules
 const express = require("express");
 const mongodb = require("mongoose");
-const homecontroller = require("/home/adam/coding/Books-collecction/controllers/home.js");
+const homerouter = require("./routes/routes.js");
 require("dotenv").config();
 //app
 const app = express();
@@ -12,8 +12,8 @@ let router = require("./routes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("assets"));
-app.set("vew engine", "ejs");
-app.use(homecontroller.router);
+app.set("view engine", "ejs");
+app.use(homerouter);
 //database connection
 mongodb
   .connect(
