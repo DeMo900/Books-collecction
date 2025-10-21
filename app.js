@@ -1,7 +1,7 @@
 //modules
 const express = require("express");
 const mongodb = require("mongoose");
-//const homecontroller = require("/home/adam/coding/Books-collecction/controllers/homecontroller");
+const homecontroller = require("/home/adam/coding/Books-collecction/controllers/home.js");
 require("dotenv").config();
 //app
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("assets"));
 app.set("vew engine", "ejs");
-//app.use(homecontroller);
+app.use(homecontroller.router);
 //database connection
 mongodb
   .connect(

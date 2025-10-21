@@ -1,4 +1,4 @@
-let booksmodel = require("./models/model");
+let booksmodel = require("./models/book");
 const express = require("express");
 let router = express.Router();
 //endpoints
