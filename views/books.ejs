@@ -150,7 +150,11 @@
   </section>
 
   <section class="book-grid">
-
+<%if(data.length===0) {%>
+  <section class="hero">
+<p> No results &#128542 </p>
+</section>
+  <%}%>
       <%data.forEach(el=>{%>
   <div class="book-card">
       <img src="<%=el.coverurl%>" alt="Book Cover" />

@@ -1,12 +1,12 @@
 //modules
 const express = require("express");
 const mongodb = require("mongoose");
+//router
 const homerouter = require("./routes/routes.js");
 require("dotenv").config();
 //app
 const app = express();
-//router
-let router = require("./routes");
+
 
 //middlewares
 app.use(express.json());
@@ -27,4 +27,4 @@ mongodb
 app.listen(3000, (err) => {
   err ? console.log(err) : console.log(`conected`);
 });
-app.use(router);
+
