@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +42,7 @@
     }
 
     nav a:hover {
-      color: #ff6f91;
+      color: #ff8ba7;
     }
 
     .hero {
@@ -76,7 +79,7 @@
 
     .hero button:hover {
       transform: scale(1.05);
-      background: #ff6f91;
+      background: #ff8ba7;
       color: #fff;
       box-shadow: 0 0 10px rgba(255, 111, 145, 0.5);
     }
@@ -94,8 +97,8 @@
 
     .genre-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
     }
 
     .genre-card {
@@ -103,13 +106,18 @@
       overflow: hidden;
       border-radius: 20px;
       cursor: pointer;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .genre-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     }
 
     .genre-card img {
       width: 100%;
-      height: 100%;
+      height: 260px;
       object-fit: cover;
       filter: brightness(80%);
       transition: transform 0.5s ease, filter 0.3s ease;
@@ -173,34 +181,54 @@
     <section class="genres">
       <h2>Explore by Genre</h2>
       <div class="genre-grid">
-        <div class="genre-card" onclick="window.location.href='/books?genre=Fantasy'">
-          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Fantasy" />
-          <div class="overlay">Fantasy</div>
-        </div>
-
-        <div class="genre-card" onclick="window.location.href='/books?genre=Romance'">
-          <img src="https://images.unsplash.com/photo-1526318472351-bc6c2f8b99e8" alt="Romance" />
-          <div class="overlay">Romance</div>
-        </div>
-
-        <div class="genre-card" onclick="window.location.href='/books?genre=Mystery'">
-          <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570" alt="Mystery" />
-          <div class="overlay">Mystery</div>
-        </div>
-
-        <div class="genre-card" onclick="window.location.href='/books?genre=Sci-Fi'">
-          <img src="https://images.unsplash.com/photo-1526378722413-0e3c5ad3e1a4" alt="Sci-Fi" />
-          <div class="overlay">Sci-Fi</div>
-        </div>
-
-        <div class="genre-card" onclick="window.location.href='/books?genre=Thriller'">
-          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Thriller" />
-          <div class="overlay">Thriller</div>
+        <div class="genre-card" onclick="window.location.href='/books?genre=Fiction'">
+          <img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa" alt="Fiction">
+          <div class="overlay">Fiction</div>
         </div>
 
         <div class="genre-card" onclick="window.location.href='/books?genre=Non-Fiction'">
-          <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc" alt="Non-Fiction" />
+          <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Non-Fiction">
           <div class="overlay">Non-Fiction</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Fantasy'">
+          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353" alt="Fantasy">
+          <div class="overlay">Fantasy</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Science Fiction'">
+          <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564" alt="Science Fiction">
+          <div class="overlay">Science Fiction</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Romance'">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Romance">
+          <div class="overlay">Romance</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Thriller'">
+          <img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee" alt="Thriller">
+          <div class="overlay">Thriller</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Mystery'">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" alt="Mystery">
+          <div class="overlay">Mystery</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Biography'">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Biography">
+          <div class="overlay">Biography</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=Horror'">
+          <img src="https://images.unsplash.com/photo-1549887534-3db1bd59dcca" alt="Horror">
+          <div class="overlay">Horror</div>
+        </div>
+
+        <div class="genre-card" onclick="window.location.href='/books?genre=History'">
+          <img src="https://images.unsplash.com/photo-1608889175156-1c573b35e4e3" alt="History">
+          <div class="overlay">History</div>
         </div>
       </div>
     </section>
@@ -209,8 +237,5 @@
   <footer>
     <p>© 2025 Book Haven. All rights reserved.</p>
   </footer>
-  <script>
-
-  </script>
 </body>
 </html>

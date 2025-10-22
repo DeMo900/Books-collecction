@@ -70,63 +70,55 @@
       padding: 60px;
     }
 
-    .book-card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
+   .book-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
 
-    .book-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-    }
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
 
-    .book-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
+.book-card img {
+  width: 100%;
+  height: 320px; /* ⬅ increased height (try 350px if you want it even taller) */
+  object-fit: cover;
+  display: block;
+}
 
-    .book-card:hover img {
-      transform: scale(1.05);
-    }
+.book-info {
+  padding: 1.2rem;
+}
 
-    .book-info {
-      padding: 15px;
-      text-align: center;
-    }
+.book-info h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
 
-    .book-info h3 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: #fff;
-    }
+.book-info p {
+  color: #ccc;
+  margin: 0.2rem 0;
+}
 
-    .book-info p {
-      margin: 2px 0;
-      color: #ddd;
-      font-size: 0.9rem;
-    }
+.genre-tag {
+  display: inline-block;
+  margin-top: 0.4rem;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
 
-    .genre-tag {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 10px;
-      background: linear-gradient(45deg, #ff6f91, #ffaf7b);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-
-    .book-card:hover .genre-tag {
-      background: linear-gradient(45deg, #ffaf7b, #ff6f91);
-    }
+.genre-tag:hover {
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+}
 
     footer {
       text-align: center;
@@ -158,55 +150,18 @@
   </section>
 
   <section class="book-grid">
-    <div class="book-card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Book Cover" />
-      <div class="book-info">
-        <h3>The Whispering Woods</h3>
-        <p>by Alice Thornton</p>
-        <p>2021</p>
-        <span class="genre-tag">Fantasy</span>
-      </div>
-    </div>
 
-    <div class="book-card">
-      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Book Cover" />
+      <%data.forEach(el=>{%>
+  <div class="book-card">
+      <img src="<%=el.coverurl%>" alt="Book Cover" />
       <div class="book-info">
-        <h3>Beneath the City Lights</h3>
-        <p>by Mark Willis</p>
-        <p>2022</p>
-        <span class="genre-tag">Mystery</span>
+        <h3><%=el.title%></h3>
+        <p><%=el.author%></p>
+        <p><%=el.publisyear%></p>
+        <span class="genre-tag"><%=el.genre%></span>
       </div>
     </div>
-
-    <div class="book-card">
-      <img src="https://images.unsplash.com/photo-1526318472351-bc6c2f8b99e8" alt="Book Cover" />
-      <div class="book-info">
-        <h3>Love and Letters</h3>
-        <p>by Emily Rose</p>
-        <p>2019</p>
-        <span class="genre-tag">Romance</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc" alt="Book Cover" />
-      <div class="book-info">
-        <h3>Stars Beyond Time</h3>
-        <p>by Leo Garcia</p>
-        <p>2020</p>
-        <span class="genre-tag">Sci-Fi</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <img src="https://images.unsplash.com/photo-1526378722413-0e3c5ad3e1a4" alt="Book Cover" />
-      <div class="book-info">
-        <h3>The Silent Truth</h3>
-        <p>by Katherine Moore</p>
-        <p>2023</p>
-        <span class="genre-tag">Thriller</span>
-      </div>
-    </div>
+     <% })%> 
   </section>
 
   <footer>
