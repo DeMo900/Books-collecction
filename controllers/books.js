@@ -22,7 +22,7 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     }
 ]
     */
-let Getbooks = async(req,res)=>{
+ exports.Getbooks = async(req,res)=>{
   try{
     //checking if query exists
     if(req.query.genre){
@@ -38,4 +38,18 @@ let Getbooks = async(req,res)=>{
     res.redirect("/500")
   }
 }
-module.exports = {Getbooks}
+
+exports.Postbook = async(req,res)=>{
+ 
+  try{
+//find a booke that matches the title
+let book = await bm.find({$or:[{title:{$regex:req.body.query,$options:"i" }},
+  {genre:{$regex:req.body.query,$options:"i" }}]})
+//show it to the user
+console.log(book)
+res.render("books",{data:book})
+  }catch(err){  
+console.log(`error from Postbook \n${err}`)
+res.redirect("/500")
+  } 
+}
