@@ -223,8 +223,8 @@
   </header>
 
   <main>
-    <form class="search-bar" method="POST" action="/books/search">
-      <input id="search" type="text" name="query" placeholder="Search for a book or genre..." required />
+    <form class="search-bar" id="form" action="/books/search" method="POST">
+      <input id="search" type="text" value = "<%=query%>" name="query" placeholder="Search for a book or genre..." required />
       <button type="submit">Search</button>
     </form>
   <section class="book-grid">
@@ -251,25 +251,6 @@
   <footer>
     <p>© 2025 Book Haven. All rights reserved.</p>
   </footer>
-  <script>
-    /*
-    setInterval( ()=>{
-    let value = document.getElementById("search").value;
-    if (value!==""){
-      fetch("/books/search",{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({query:value})
-      }).then(res=>res.json())
-      .then(data=>{
-        console.log(data);
-      })
-    console.log(value);
-    }
-  },500);
-  */
-  </script>
+ <script src="/script.js"></script>
 </body>
 </html>

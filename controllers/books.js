@@ -1,4 +1,5 @@
 // ...existing code...
+const { query } = require("express-validator")
 const bm = require("/home/adam/coding/Books-collecction/models/book.js")
 
 /*let document = [
@@ -32,7 +33,7 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     }
     //if not get and render all boks 
         let data = await bm.find()
-    res.render("books",{data:data})
+    res.render("books",{data:data,query:""})
   }catch(err){
     console.log(`error from Getbooks \n${err}`)
     res.redirect("/500")
@@ -42,12 +43,15 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
 exports.Postbook = async(req,res)=>{
  
   try{
+   console.log(req.body) 
 //find a booke that matches the title
 let book = await bm.find({$or:[{title:{$regex:req.body.query,$options:"i" }},
   {genre:{$regex:req.body.query,$options:"i" }}]})
 //show it to the user
 console.log(book)
-res.render("books",{data:book})
+
+
+return res.render("books",{data:book,query:req.body.query})
   }catch(err){  
 console.log(`error from Postbook \n${err}`)
 res.redirect("/500")
