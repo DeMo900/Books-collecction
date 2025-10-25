@@ -223,8 +223,8 @@
   </header>
 
   <main>
-    <form class="search-bar" id="form" action="/books/search" method="POST">
-      <input id="search" type="text" value = "<%=query%>" name="query" placeholder="Search for a book or genre..." required />
+    <form class="search-bar" id="form" action="/books" method="get">
+      <input id="search" type="text"  name="value" value="<%=query%>" placeholder="Search for a book or genre..." required />
       <button type="submit">Search</button>
     </form>
   <section class="book-grid">

@@ -25,11 +25,18 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     */
  exports.Getbooks = async(req,res)=>{
   try{
-    //checking if query exists
+    //checking if genre exists
     if(req.query.genre){
       //getting and rendering the filtered books with the picked genre
     let filterdata = await bm.find({genre:req.query.genre})
-   return res.render("books",{data:filterdata})
+   return res.render("books",{data:filterdata,query:""})
+    }
+    //checking if search value exists
+    if(req.query.value){
+      let book = await bm.find({$or:[{title:{$regex:req.query.value,$options:"i" }},
+  {genre:{$regex:req.query.value,$options:"i" }}]})
+      //getting and rendering the filtered books with the searched value
+     return res.render("books",{data:book,query:req.query.value})
     }
     //if not get and render all boks 
         let data = await bm.find()

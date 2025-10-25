@@ -11,7 +11,7 @@ const errors = require("/home/adam/coding/Books-collecction/controllers/errors.j
 router.get("/",homecontroller.Gethome)
 //books
 router.get("/books",books.Getbooks)
-router.post("/books/search",books.Postbook)
+//router.post("/books/search",books.Postbook)
 //errors
 router.get("/500",errors.get500)
 
