@@ -31,16 +31,10 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     let filterdata = await bm.find({genre:req.query.genre})
    return res.render("books",{data:filterdata,query:""})
     }
-    //checking if search value exists
-    if(req.query.value){
-      let book = await bm.find({$or:[{title:{$regex:req.query.value,$options:"i" }},
-  {genre:{$regex:req.query.value,$options:"i" }}]})
-      //getting and rendering the filtered books with the searched value
-     return res.render("books",{data:book,query:req.query.value})
-    }
+  
     //if not get and render all boks 
         let data = await bm.find()
-    res.render("books",{data:data,query:""})
+    res.render("books",{data:data})
   }catch(err){
     console.log(`error from Getbooks \n${err}`)
     res.redirect("/500")
@@ -51,14 +45,17 @@ exports.Postbook = async(req,res)=>{
  
   try{
    console.log(req.body) 
+   console.log(req.query)
 //find a booke that matches the title
-let book = await bm.find({$or:[{title:{$regex:req.body.query,$options:"i" }},
-  {genre:{$regex:req.body.query,$options:"i" }}]})
+let book = await bm.find({$or:[{title:{$regex:req.query.value,$options:"i" }},
+  {genre:{$regex:req.query.value,$options:"i" }}]})
 //show it to the user
 console.log(book)
 
 
-return res.render("books",{data:book,query:req.body.query})
+return res.json({
+  book
+})
   }catch(err){  
 console.log(`error from Postbook \n${err}`)
 res.redirect("/500")

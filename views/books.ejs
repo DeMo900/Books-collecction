@@ -223,8 +223,8 @@
   </header>
 
   <main>
-    <form class="search-bar" id="form" action="/books" method="get">
-      <input id="search" type="text"  name="value" value="<%=query%>" placeholder="Search for a book or genre..." required />
+    <form class="search-bar" id="form">
+      <input id="search" type="text"  name="value" placeholder="Search for a book or genre..." required />
       <button type="submit">Search</button>
     </form>
   <section class="book-grid">
@@ -233,7 +233,7 @@
 <p> No results &#128542 </p>
 </section>
   <%}%>
-    <section class="book-container">
+    <section id = "section" class="book-container">
       <% data.forEach(el => { %>
         <div class="book-card">
           <img src="<%= el.coverurl %>" alt="Book Cover" />
