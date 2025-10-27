@@ -14,7 +14,13 @@ headers:{
   .then(data => {
 let array = data.book
 let section = document.getElementById("section");
-      section.innerHTML = ""
+let grid = document.getElementById("bookgrid");
+
+if(array.length===0){
+      grid.innerHTML = ` <section class="hero">
+<p> No results &#128542 </p>`
+}
+section.innerHTML = "";
 for(let i=0;i<array.length+1;i++){
   console.log(array[i]);
   let carde = document.createElement("div");
@@ -29,6 +35,7 @@ for(let i=0;i<array.length+1;i++){
           </div>
   `
   section.appendChild(carde);
+
   /*
  <div class="book-card">
           <img src="<%= el.coverurl %>" alt="Book Cover" />
