@@ -1,10 +1,12 @@
+//setupp
   let input = document.getElementById("search");
    let form = document.getElementById("form");
     input.focus()
 input.setSelectionRange(input.value.length, input.value.length);
     console.log(input);
-    input.addEventListener("input",()=>{
-       let value = document.getElementById("search").value
+    ///////////
+    function sendrequest (){
+ let value = document.getElementById("search").value
        console.log(value);
 fetch("/books/search?value="+value,{
   method:"POST",
@@ -13,15 +15,18 @@ headers:{
 }}).then(res => res.json())
   .then(data => {
 let array = data.book
-let section = document.getElementById("section");
 let grid = document.getElementById("bookgrid");
-
+let div = document.getElementById("div");
+  div.innerHTML = ""
 if(array.length===0){
-      grid.innerHTML = ` <section class="hero">
-<p> No results &#128542 </p>`
-}
-section.innerHTML = "";
-for(let i=0;i<array.length+1;i++){
+  let section = document.createElement("section");
+  section.className= "hero"
+   section.innerHTML = `<p>No results found 😢</p>`
+  div.appendChild(section);
+  }
+
+grid.innerHTML = "";
+for(let i=0;i<array.length;i++){
   console.log(array[i]);
   let carde = document.createElement("div");
   carde.className = "book-card";
@@ -34,8 +39,13 @@ for(let i=0;i<array.length+1;i++){
             <span class="genre-tag">${array[i].genre}</span>
           </div>
   `
-  section.appendChild(carde);
-
+  grid.appendChild(carde);
+}
+    })
+  }
+sendrequest()
+ input.addEventListener("input", sendrequest);
+      
   /*
  <div class="book-card">
           <img src="<%= el.coverurl %>" alt="Book Cover" />
@@ -47,9 +57,4 @@ for(let i=0;i<array.length+1;i++){
           </div>
         </div>
   */
-}
-
-
-  })
-  .catch(err => console.error(err));
-    })
+  

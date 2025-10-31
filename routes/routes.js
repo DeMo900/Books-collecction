@@ -14,5 +14,6 @@ router.get("/books",books.Getbooks)
 router.post("/books/search",books.Postbook)
 //errors
 router.get("/500",errors.get500)
-
+//about 
+router.get("/about",homecontroller.Getabout)
 module.exports = router;

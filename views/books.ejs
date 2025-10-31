@@ -5,62 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Books | Book Haven</title>
   <style>
-    .hero {
-  text-align: center;
-  margin: 100px auto;
-  padding: 50px 20px;
-  background: linear-gradient(135deg, rgba(255,111,145,0.1), rgba(255,148,114,0.1));
-  border-radius: 25px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  backdrop-filter: blur(5px);
-  animation: fadeIn 1s ease forwards;
-}
-
-.hero p {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-
-  /* fallback color for non-supporting browsers */
-  color: #fff;
-
-  /* gradient background (visible through text when clipped) */
-  background: linear-gradient(135deg, #ff6f91, #ff9472);
-
-  /* make the gradient show through text in WebKit browsers */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* try unprefixed as well (may be flagged by some validators) */
-  background-clip: text;
-  color: transparent; /* fallback for browsers honoring background-clip:text */
-
-  animation: floatText 2.5s ease-in-out infinite;
-}
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes floatText {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
     body {
@@ -98,6 +42,7 @@
       color: #ff6f91;
     }
 
+    /* 🔍 Search Bar */
     .search-bar {
       display: flex;
       justify-content: center;
@@ -110,7 +55,7 @@
 
     .search-bar input {
       width: 100%;
-      padding: 14px 55px 14px 20px;
+      padding: 14px 20px;
       border: none;
       border-radius: 30px;
       outline: none;
@@ -118,58 +63,46 @@
       color: #333;
       background: #fff;
       transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 111, 145, 0.2);
     }
 
     .search-bar input:focus {
-      box-shadow: 0 0 10px rgba(255, 111, 145, 0.5);
-      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(255, 111, 145, 0.6);
+      transform: scale(1.03);
     }
 
-    .search-bar button {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: linear-gradient(135deg, #ff6f91, #ff9472);
-      border: none;
-      border-radius: 30px;
-      padding: 10px 18px;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .search-bar button:hover {
-      background: linear-gradient(135deg, #ff9472, #ff6f91);
-      transform: translateY(-50%) scale(1.05);
-      box-shadow: 0 0 10px rgba(255, 111, 145, 0.5);
-    }
-
+    /* 📚 Book Grid */
     .book-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 25px;
       padding: 50px 60px;
+      animation: fadeIn 1s ease forwards;
     }
 
     .book-card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .book-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
     }
 
     .book-card img {
       width: 100%;
       height: 330px;
       object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .book-card:hover img {
+      transform: scale(1.05);
     }
 
     .book-info {
@@ -198,6 +131,49 @@
       margin-top: 8px;
     }
 
+    /* 😢 No Results */
+    .hero {
+      text-align: center;
+      margin: 100px auto;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, rgba(255,111,145,0.15), rgba(255,148,114,0.15));
+      border-radius: 25px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff6f91, #ff9472);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: floatText 2.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatText {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
     footer {
       text-align: center;
       padding: 25px;
@@ -210,54 +186,6 @@
       color: #aaa;
       font-size: 0.9rem;
     }
-    .search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 70px auto 40px;
-  width: 80%;
-  max-width: 600px;
-  position: relative;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 40px;
-  outline: none;
-  font-size: 1.1rem;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 15px rgba(255, 111, 145, 0.25);
-  backdrop-filter: blur(12px);
-  transition: all 0.4s ease;
-}
-
-.search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.5px;
-}
-
-.search-bar input:focus {
-  transform: scale(1.03);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 25px rgba(255, 111, 145, 0.45), 0 0 40px rgba(255, 148, 114, 0.25);
-}
-
-/* Optional subtle animation glow */
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(255, 111, 145, 0.25);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(255, 148, 114, 0.45);
-  }
-}
-
-.search-bar input:focus {
-  animation: glowPulse 2s infinite ease-in-out;
-}
   </style>
 </head>
 <body>
@@ -272,32 +200,23 @@
 
   <main>
     <form class="search-bar" id="form">
-      <input id="search" type="text"  name="value" placeholder="Search for a book or genre..." required />
+      <input id="search" type="text" name="value" placeholder="Search for a book or genre..." required />
     </form>
-  <section id = "bookgrid" class="book-grid">
-<%if(data.length===0) {%>
-  <section class="hero">
-<p> No results &#128542 </p>
-</section>
-  <%}%>
-    <section id = "section" class="book-container">
-      <% data.forEach(el => { %>
-        <div class="book-card">
-          <img src="<%= el.coverurl %>" alt="Book Cover" />
-          <div class="book-info">
-            <h3><%= el.title %></h3>
-            <p><%= el.author %></p>
-            <p><%= el.publishyear %></p>
-            <span class="genre-tag"><%= el.genre %></span>
-          </div>
-        </div>
-      <% }) %>
-    </section>
+
+   <div id="div">
+    
+   </div> 
+      <section id="bookgrid" class="book-container">
+        
+           
+      </section>
+    
   </main>
 
   <footer>
     <p>© 2025 Book Haven. All rights reserved.</p>
   </footer>
- <script src="/script.js"></script>
+
+  <script src="/script.js"></script>
 </body>
 </html>

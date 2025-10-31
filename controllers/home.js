@@ -5,8 +5,11 @@ let Gethome = (req,res)=>{
 }
 module.exports = {Gethome}
 
-
-
+//about
+let Getabout = (req,res)=>{
+    res.render("about")
+}
+module.exports = {Gethome,Getabout}
 /*
 /	Homepage (show top or newest books)	
 /books	Show all books (with search + filter)	
