@@ -61,3 +61,7 @@ console.log(`error from Postbook \n${err}`)
 res.redirect("/500")
   } 
 }
+//add book
+exports.Getaddbook = (req,res)=>{
+res.render("add-book")
+}

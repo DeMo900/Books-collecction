@@ -17,7 +17,8 @@ headers:{
 let array = data.book
 let grid = document.getElementById("bookgrid");
 let div = document.getElementById("div");
-  div.innerHTML = ""
+  div.innerHTML = "";
+  console.log(div)
 if(array.length===0){
   let section = document.createElement("section");
   section.className= "hero"

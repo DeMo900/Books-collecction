@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add a New Book</title>
+  <link rel="stylesheet" href="/css/add.css">
+</head>
+
+<body>
+  <%-include('includes/nav.ejs')%>
+  <div class="add-book-container">
+    <div class="book-preview">
+      <img id="cover-preview" src="/assets/img/placeholder.png" alt="Book Cover">
+      <label for="cover" class="upload-btn">Upload Cover</label>
+      <input type="file" id="cover" name="cover" accept="image/*" hidden>
+    </div>
+
+    <div class="book-form">
+      <h1>Add a New Book</h1>
+      <form action="/books/add" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Book title" required>
+        </div>
+
+        <div class="input-group">
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" placeholder="Author name" required>
+        </div>
+
+        <div class="input-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" placeholder="Write a short description..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Book</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Live preview for uploaded cover
+    const coverInput = document.getElementById('cover');
+    const coverPreview = document.getElementById('cover-preview');
+
+    coverInput.addEventListener('change', () => {
+      const file = coverInput.files[0];
+      if (file) {
+        coverPreview.src = URL.createObjectURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
