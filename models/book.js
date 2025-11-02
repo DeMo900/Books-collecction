@@ -7,7 +7,7 @@ let book = new mongodb.Schema({
   genre:{type:String , maxlength:25, required:true},
   publisyear : {type : Number , maxlength:4, required:true }, 
   coverurl : {type:String , required:true},
-  rating : {type : Number  , max:5, required:true},
+  rating : {type : Number  , max:5, },
   createdAt : {type:Date , default:Date.now()},
 });
 

@@ -1,12 +1,12 @@
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  padding: 0;
   background: linear-gradient(135deg, #1b1b2f, #162447);
   color: #f8f9fa;
+  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
 
 .add-book-container {
@@ -18,6 +18,7 @@ body {
   width: 80%;
   max-width: 900px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  margin-top: 120px; /* 👈 push it below the navbar */
 }
 
 .book-preview {
@@ -118,4 +119,127 @@ body {
   background: #ff2e63;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 46, 99, 0.4);
+}
+
+/* additions for the customized form */
+.input-row {
+  display: flex;
+  gap: 16px;
+}
+.input-group.small { flex: 1; }
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: #cfcfcf;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Enhanced styling for custom selects (genre + year) */
+.select-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* main select styling */
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 12px 44px 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: #f3f4f6;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.18);
+  transition: box-shadow 160ms ease, transform 120ms ease, border-color 160ms ease;
+}
+
+/* subtle hover + focus states */
+.custom-select:hover {
+  border-color: rgba(228,63,90,0.18);
+  transform: translateY(-1px);
+}
+.custom-select:focus {
+  box-shadow: 0 6px 18px rgba(228,63,90,0.08);
+  border-color: rgba(228,63,90,0.28);
+}
+
+/* option text color (limited browser support) */
+.custom-select option {
+  color: #111827;
+  background: #ffffff;
+}
+
+/* decorative arrow to the right of the select */
+.select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  background-image: linear-gradient(135deg, #ff6f91 0%, #ff9472 100%);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>') center / contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>') center / contain no-repeat;
+  transition: transform 200ms cubic-bezier(.2,.9,.2,1), opacity 160ms ease;
+  opacity: 0.98;
+}
+
+/* rotate arrow when select is focused / opened */
+.custom-select:focus + .select-arrow,
+.custom-select:active + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* genre-display micro-style */
+.genre-display {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #d1d5db;
+  background: rgba(255,255,255,0.02);
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  min-width: 140px;
+  transition: transform 200ms ease, background 160ms ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+/* pulse animation is defined previously; ensure smoothness */
+.genre-display.pulse { transform-origin: center; }
+
+/* layout helpers for select + year row */
+.input-row.select-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.input-row.select-row .input-group { flex: 1; }
+
+/* responsive tweaks */
+@media (max-width: 720px) {
+  .add-book-container { flex-direction: column; width: 94%; margin-top: 80px; }
+  .input-row.select-row { flex-direction: column; }
+  .select-arrow { right: 10px; width: 18px; height: 18px; }
+}
+
+/* small accessibility improvement: visible focus outline for keyboard users */
+.custom-select:focus {
+  outline: 3px solid rgba(228,63,90,0.12);
 }

@@ -1,17 +1,7 @@
 // ...existing code...
-const { query } = require("express-validator")
 const bm = require("/home/adam/coding/Books-collecction/models/book.js")
 
-/*let document = [
-    {
-        title: "the blcak soul",
-        author: "adam",
-        desc: "a cool novel",
-        genre: "Fantasy",
-        publisyear: 2007,
-        coverurl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/illustrative-historical-fiction%2C-knight%2C-crus-design-template-1399cb70cc3f919c92ce77576f8311c1.webp?ts=1719676854",
-        rating: 4,
-    },
+/*
     {
         title: "the land of clouds",
         author: "chloe ellis",
@@ -31,37 +21,29 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     let filterdata = await bm.find({genre:req.query.genre})
    return res.render("books",{data:filterdata,query:""})
     }
-  
     //if not get and render all boks 
         let data = await bm.find()
-    res.render("books",{data:data})
+    res.render("books")
   }catch(err){
     console.log(`error from Getbooks \n${err}`)
-    res.redirect("/500")
+    res.status(500).redirect("/500")
   }
 }
-
-exports.Postbook = async(req,res)=>{
+//searching
+exports.searchbook = async(req,res)=>{
  
   try{
-   console.log(req.body) 
-   console.log(req.query)
-//find a booke that matches the title
+//find a booke that matches the title or genre
 let book = await bm.find({$or:[{title:{$regex:req.query.value,$options:"i" }},
   {genre:{$regex:req.query.value,$options:"i" }}]})
-//show it to the user
-console.log(book)
 
-
+//returning the data in json
 return res.json({
   book
 })
+//catching errors
   }catch(err){  
 console.log(`error from Postbook \n${err}`)
-res.redirect("/500")
+res.status(500).redirect("/500")
   } 
-}
-//add book
-exports.Getaddbook = (req,res)=>{
-res.render("add-book")
 }
