@@ -1,6 +1,7 @@
 ///setting the reouter 
 const express = require("express");
 const router = express.Router();
+const {body} = require("express-validator")
 //home
 const homecontroller = require("/home/adam/coding/Books-collecction/controllers/home")
 //books
@@ -17,7 +18,10 @@ router.get("/books",books.Getbooks)
 router.post("/books/search",books.searchbook)
 //add book
 router.get("/books/add-book",addbook.Getaddbook)
-router.post("/books/add-book",addbook.createbook)
+router.post("/books/add-book",body("title").notEmpty().isLength({min:4,max:80}),body("author").isLength({max:25}),
+body("desc").notEmpty().isLength({max:500}),body("genre").notEmpty().isLength({min:6 , max:16}),
+body("publisyear").isLength({max:4})
+,addbook.createbook)
 //errors
 router.get("/500",errors.get500)
 //about 
