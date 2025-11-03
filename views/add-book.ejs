@@ -30,17 +30,17 @@
       <form action="/books/add-book" method="POST" >
         <div class="input-group">
           <label for="title" >Title</label>
-          <input type="text" id="title" name="title" placeholder="Book title" minlength="4" maxlength="80" required>
+          <input type="text" name="title" id="title" value= "<%=body!==""?body.title:""%>"  placeholder="Book title" minlength="4" maxlength="80" required>
         </div>
 
         <div class="input-group">
           <label for="author">Author</label>
-          <input type="text" id="author" name="author" placeholder="Author name" required>
+          <input type="text" id="author" name="author" placeholder="Author name" requiredvalue= "<%=body!==""?body.author:""%>">
         </div>
 
         <div class="input-group">
           <label for="desc">Description</label>
-          <textarea id="description" name="desc" placeholder="Write a short description..."></textarea>
+          <textarea id="description" name="desc" placeholder="Write a short description..."value= "<%=body!==""?body.desc:""%>"></textarea>
         </div>
 
         <div class="input-group">
@@ -68,7 +68,8 @@
         <!-- simplified published year input (no JS picker) -->
         <div class="input-group">
           <label for="publisyear">Published Year</label>
-          <input type="number" id="publisyear" name="publisyear" min="1970" max="3000" placeholder="e.g. 2023" required class="custom-select" maxlength="4"/>
+          <input type="number" id="publisyear" name="publisyear" min="1970" max="3000" placeholder="e.g. 2023" required class="custom-select" maxlength="4"
+          value= "<%=body!==""?body.publisyear:""%>"/>
         </div>
 
         <div class="input-group">

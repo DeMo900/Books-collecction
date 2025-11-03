@@ -22,7 +22,8 @@ router.post("/books/add-book",
 body("title").notEmpty().isLength({min:4,max:80}).withMessage("you should type atleast 4 letters in title :("),
 body("author").isLength({max:25}).notEmpty().withMessage("author name is required"),
 body("desc").notEmpty().isLength({min:25,max:500}).withMessage("you should type atleast 25 letters in descreption duh"),
-body("genre").notEmpty().isLength({min:6 , max:16}).withMessage("please pick a genre"),
+body("genre").notEmpty().isIn(["Fiction","Non-Fiction","Fantasy","Science Fiction","Romance","Thriller","Mystery","Biography","Self-Help","History","Poetry"])
+.isLength({min:6 , max:16}).withMessage("please pick a genre"),
 body("publisyear").isLength({max:4}).notEmpty().withMessage("publish year is required")
 ,addbook.createbook)
 //errors

@@ -4,7 +4,7 @@ const {validationResult} = require("express-validator")
 
 //add book
 exports.Getaddbook = (req,res)=>{
-res.render("add-book",{error:""})
+res.render("add-book",{error:"",body:""})
 }
 //create book
 exports.createbook = (req,res)=>{
@@ -13,7 +13,8 @@ let results = validationResult(req)
 
 if(!results.isEmpty()){
     console.log(results.array())
-    res.render("add-book",{error:results.array()})
+    console.log(req.body)
+    res.render("add-book",{error:results.array(),body:req.body})
    // return res.status(422).render("add-book",{errors:results.array()})
 }
 
