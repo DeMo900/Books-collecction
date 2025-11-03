@@ -18,11 +18,19 @@
 
     <div class="book-form">
       <h1>Add a New Book</h1>
+
+      <!-- placeholder for error messages (server or client can fill/remove .hidden) -->
+      <% if (error !==""){%>
+       <%error.forEach((el)=>{%>
+      <div id="error-box" class="error-box" role="alert" aria-live="assertive"><%=el.msg%></div>
+        <%})%>
+      <%}%>
+      
       <!-- enable file uploads -->
       <form action="/books/add-book" method="POST" >
         <div class="input-group">
           <label for="title" >Title</label>
-          <input type="text" id="title" name="title" placeholder="Book title" required>
+          <input type="text" id="title" name="title" placeholder="Book title" minlength="4" maxlength="80" required>
         </div>
 
         <div class="input-group">
@@ -31,8 +39,8 @@
         </div>
 
         <div class="input-group">
-          <label for="description">Description</label>
-          <textarea id="description" name="description" placeholder="Write a short description..."></textarea>
+          <label for="desc">Description</label>
+          <textarea id="description" name="desc" placeholder="Write a short description..."></textarea>
         </div>
 
         <div class="input-group">
@@ -77,31 +85,6 @@
     </div>
   </div>
 
-  <script>
-    // Live preview for uploaded cover
-    const coverInput = document.getElementById('cover');
-    const coverPreview = document.getElementById('cover-preview');
-    const fileNameSpan = document.getElementById('file-name');
-    const genreSelect = document.getElementById('genre');
-    const genreDisplay = document.getElementById('genre-display');
-
-    coverInput.addEventListener('change', () => {
-      const file = coverInput.files[0];
-      if (file) {
-        coverPreview.src = URL.createObjectURL(file);
-        fileNameSpan.textContent = file.name;
-      }
-    });
-
-    // reflect chosen genre below the select
-    genreSelect.addEventListener('change', () => {
-      genreDisplay.textContent = `Selected: ${genreSelect.value}`;
-      genreDisplay.classList.remove('pulse');
-      void genreDisplay.offsetWidth;
-      genreDisplay.classList.add('pulse');
-    });
-
-    // removed year-picker JS — simple number input now submits directly
-  </script>
+  <script src="/js/add-book.js"></script>
 </body>
 </html>

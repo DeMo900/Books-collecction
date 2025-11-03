@@ -243,3 +243,38 @@ body {
 .custom-select:focus {
   outline: 3px solid rgba(228,63,90,0.12);
 }
+
+/* Error box styling (placeholder only) */
+.error-box {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(244,67,54,0.08), rgba(255,111,113,0.04));
+  color: #ffecec;
+  border-left: 4px solid #ff6f91;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+  font-size: 14px;
+  line-height: 1.3;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* small label inside box if desired */
+.error-box strong { color: #ffd6dc; margin-right: 8px; font-weight:700; }
+
+/* hidden helper class to keep markup present */
+.hidden { display: none !important; }
+
+/* subtle entry animation */
+@keyframes errorIn {
+  from { transform: translateY(-6px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.error-box:not(.hidden) { animation: errorIn 220ms ease both; }
+
+/* responsive tweak */
+@media (max-width:520px) {
+  .error-box { padding: 10px 12px; font-size: 13px; }
+}

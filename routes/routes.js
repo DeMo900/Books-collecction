@@ -18,9 +18,12 @@ router.get("/books",books.Getbooks)
 router.post("/books/search",books.searchbook)
 //add book
 router.get("/books/add-book",addbook.Getaddbook)
-router.post("/books/add-book",body("title").notEmpty().isLength({min:4,max:80}),body("author").isLength({max:25}),
-body("desc").notEmpty().isLength({max:500}),body("genre").notEmpty().isLength({min:6 , max:16}),
-body("publisyear").isLength({max:4})
+router.post("/books/add-book",
+body("title").notEmpty().isLength({min:4,max:80}).withMessage("you should type atleast 4 letters in title :("),
+body("author").isLength({max:25}).notEmpty().withMessage("author name is required"),
+body("desc").notEmpty().isLength({min:25,max:500}).withMessage("you should type atleast 25 letters in descreption duh"),
+body("genre").notEmpty().isLength({min:6 , max:16}).withMessage("please pick a genre"),
+body("publisyear").isLength({max:4}).notEmpty().withMessage("publish year is required")
 ,addbook.createbook)
 //errors
 router.get("/500",errors.get500)
