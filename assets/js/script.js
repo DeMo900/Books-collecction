@@ -32,7 +32,12 @@ for(let i=0;i<array.length;i++){
   let carde = document.createElement("div");
   carde.className = "book-card";
   carde.innerHTML = `
+  if(array[i].coverurl.startsWith("http")){
           <img src="${array[i].coverurl}" alt="Book Cover" />
+  }else{
+         <img src="${ `../uploads/`+array[i].coverurl}" alt="Book Cover" />
+  }
+          
           <div class="book-info">
             <h3>${array[i].title}</h3>
             <p>${array[i].author}</p>
