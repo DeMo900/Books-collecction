@@ -31,13 +31,9 @@ for(let i=0;i<array.length;i++){
   console.log(array[i]);
   let carde = document.createElement("div");
   carde.className = "book-card";
-  carde.innerHTML = `
-  if(array[i].coverurl.startsWith("http")){
-          <img src="${array[i].coverurl}" alt="Book Cover" />
-  }else{
-         <img src="${ `../uploads/`+array[i].coverurl}" alt="Book Cover" />
-  }
-          
+   if(array[i].coverurl.startsWith("http")){
+            carde.innerHTML = ` 
+           <img src="${array[i].coverurl}" alt="Book Cover" />
           <div class="book-info">
             <h3>${array[i].title}</h3>
             <p>${array[i].author}</p>
@@ -46,6 +42,21 @@ for(let i=0;i<array.length;i++){
           </div>
   `
   grid.appendChild(carde);
+
+  }else{
+      carde.innerHTML = `
+          <div class="book-info">
+             <img src="${ `../uploads/`+array[i].coverurl}" alt="Book Cover" />
+            <h3>${array[i].title}</h3>
+            <p>${array[i].author}</p>
+            <p>${array[i].publisyear}</p>
+            <span class="genre-tag">${array[i].genre}</span>
+          </div>
+  `
+  grid.appendChild(carde);
+      
+}
+
 }
     })
   }
