@@ -15,8 +15,11 @@ console.log(req.file)
 console.log(req.body)
 if(!results.isEmpty()){
     console.log(results.array())
-    res.render("add-book",{error:results.array(),body:req.body})
+  return  res.render("add-book",{error:results.array(),body:req.body})
    // return res.status(422).render("add-book",{errors:results.array()})
+}
+ if (!req.cover){
+    return res.render("add-book",{error:[{msg:"cover image is required"}],body:req.body})
 }
 let newbm = new bm({
  title: req.body.title,
@@ -28,6 +31,7 @@ let newbm = new bm({
 
 })
 await newbm.save()
+console.log(`book created successfully`)
     }catch(err){
         console.log(`error from createbook \n${err}`)
         res.status(500).redirect("/500")

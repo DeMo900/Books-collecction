@@ -18,8 +18,15 @@ const storage = multer.diskStorage({
     req.body.cover = name;
   }
 })
+const filter = (req,file,cb)=>{
+  if(file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg"){
+    cb(null,true)
+  }else{
+cb(null,false)
+  }
+}
 //middlewares
-app.use(multer({storage:storage}).single("cover"));
+app.use(multer({storage:storage,fileFilter:filter}).single("cover"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("assets"));
