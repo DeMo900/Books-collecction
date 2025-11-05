@@ -13,13 +13,31 @@
     <form class="search-bar" id="form">
       <input id="search" type="text" name="value" placeholder="Search for a book or genre..." required />
     </form>
-<div id="div">
-    
-   </div>
-   
-    <section id="bookgrid" class="book-container">
-   
+    <div id="div"></div>
+    <%if(data.length === 0){%>
 
+    <section class = 'hero'>
+      <p>No results found 😢</p>
+    </section>
+ 
+   <%}%>
+     </div>
+    <section id="bookgrid" class="book-container">
+      
+     <%if (data.length>0){%>
+<div class="book-card">
+  <%data.forEach(function(book){ %>
+      <img src="<%=book.coverurl.startsWith("http") ? book.url :`../uploads/+${book.coverurl}` %>" alt="Book Cover" />
+      <div class="book-info">
+      <h3><%=book.title%></h3>
+      <p><%=book.author%></p>
+      <p><%=book.publisyear%></p>
+      <p><%=book.genre%></p>
+
+    </div>
+    </div> 
+  <%})%>
+  <%}%>
     </section>
   </main>
 

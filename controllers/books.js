@@ -19,11 +19,12 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     if(req.query.genre){
       //getting and rendering the filtered books with the picked genre
     let filterdata = await bm.find({genre:req.query.genre})
+    console.log(filterdata)
    return res.render("books",{data:filterdata,query:""})
     }
     //if not get and render all boks 
         let data = await bm.find()
-    res.render("books")
+    res.render("books",{data:[]})
   }catch(err){
     console.log(`error from Getbooks \n${err}`)
     res.status(500).redirect("/500")

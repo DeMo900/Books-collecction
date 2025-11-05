@@ -60,8 +60,12 @@ for(let i=0;i<array.length;i++){
 }
     })
   }
-sendrequest()
+  
+ 
+
+
  input.addEventListener("input", sendrequest);
+
       
   /*
  <div class="book-card">
