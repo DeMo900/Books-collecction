@@ -18,27 +18,26 @@
 
     <section class = 'hero'>
       <p>No results found 😢</p>
-    </section>
- 
+    </section> 
    <%}%>
-     </div>
-    <section id="bookgrid" class="book-container">
-      
-     <%if (data.length>0){%>
-<div class="book-card">
-  <%data.forEach(function(book){ %>
-      <img src="<%=book.coverurl.startsWith("http") ? book.url :`../uploads/+${book.coverurl}` %>" alt="Book Cover" />
-      <div class="book-info">
-      <h3><%=book.title%></h3>
-      <p><%=book.author%></p>
-      <p><%=book.publisyear%></p>
-      <p><%=book.genre%></p>
-
-    </div>
-    </div> 
-  <%})%>
-  <%}%>
-    </section>
+  </div>
+     
+<% if (data.length > 0) { %>
+  <section id="bookgrid" class="book-container">
+    <% data.forEach(function(book){ %>
+      <div class="book-card">
+        <div class="book-info">
+          <img src="<%= book.coverurl.startsWith('http') ? book.coverurl : `../uploads/${book.coverurl}` %>" alt="Book Cover" />
+          <h3><%= book.title %></h3>
+          <p><%= book.author %></p>
+          <p><%= book.publisyear %></p>
+          <span class="genre-tag"><%= book.genre %></span>
+        </div>
+      </div>
+    <% }) %>
+  </section>
+<% } %>
+ 
   </main>
 
   <footer>

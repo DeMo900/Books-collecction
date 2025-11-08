@@ -24,7 +24,7 @@ const bm = require("/home/adam/coding/Books-collecction/models/book.js")
     }
     //if not get and render all boks 
         let data = await bm.find()
-    res.render("books",{data:[]})
+    res.render("books",{data:data})
   }catch(err){
     console.log(`error from Getbooks \n${err}`)
     res.status(500).redirect("/500")
