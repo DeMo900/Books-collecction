@@ -2,6 +2,7 @@
 const express = require("express");
 const mongodb = require("mongoose");
 const multer = require("multer");
+const session = require("express-session");
 //router
 const homerouter = require("./routes/routes.js");
 require("dotenv").config();
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("assets"));
 app.set("view engine", "ejs");
+//app.use(session({secret:"my secret",resave:false,saveUninitialized:false}));
 app.use(homerouter);
 //database connection
 mongodb

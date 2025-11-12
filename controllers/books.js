@@ -1,18 +1,7 @@
 // ...existing code...
 const bm = require("/home/adam/coding/Books-collecction/models/book.js")
 
-/*
-    {
-        title: "the land of clouds",
-        author: "chloe ellis",
-        desc: "A gripping small-town mystery that uncovers buried secrets.",
-        genre: "Mystery",
-        publisyear: 2015,
-        coverurl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/black-and-white-thriller-book-cover-novel-des-design-template-a2d6172e45ffa55724a46d22534af278.webp?ts=1698540887",
-        rating: 4.5,
-    }
-]
-    */
+//getting books
  exports.Getbooks = async(req,res)=>{
   try{
     //checking if genre exists
