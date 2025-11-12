@@ -1,6 +1,6 @@
 const mongodb = require("mongoose");
 
-let book = new mongodb.Schema({
+const book = new mongodb.Schema({
   title : {type:String , minlength:4, maxlength:80, required:true},
   author :{type:String , maxlength:25, required:true},
   desc:{type:String , maxlength:500, required:true},
@@ -11,7 +11,7 @@ let book = new mongodb.Schema({
   createdAt : {type:Date , default:Date.now()},
 });
 
-let bm = mongodb.model("book", book);
+const bm = mongodb.model("book", book);
 
 module.exports = bm;
 /*
