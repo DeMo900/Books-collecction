@@ -12,4 +12,4 @@ role:joi.string().valid("creator","user").default("user").required(),
 })
 return schema.validate(body)
 }
-mldule.exports = data
+module.exports = data
