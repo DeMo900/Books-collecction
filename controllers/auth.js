@@ -12,15 +12,18 @@ exports.Getsignin = (req,res)=>{
 res.render("signin")
 }
 //POST signup
-exports.Postsignup = (req,res)=>{
+exports.Postsignup = async(req,res)=>{
 //validate data
 const {error} = validate(req.body)
 if(error){
     return res.status(400).render("signup",{error:error.details[0].message,body:req.body})
 }
-
-console.log(validate(req.body));
-console.log(req.body)
+//hasing the password
+try{
+let hashedpassword = await bcrypt.hash(req.body.password,11)
+}catch(err){
+    return res.status(500).render("500")
+}
 //check if user already exists
 //hash password
 //store in db
