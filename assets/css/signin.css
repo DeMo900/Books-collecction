@@ -102,3 +102,9 @@ footer p {
   color: #aaa;
   font-size: 0.9rem;
 }
+.error {
+  color: #ee0606;
+  font-size: 1rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+}
