@@ -18,13 +18,18 @@ const {error} = validate(req.body)
 if(error){
     return res.status(400).render("signup",{error:error.details[0].message,body:req.body})
 }
-//hasing the password
+//check if user already exists
 try{
+let user = await um.findOne({email:req.body.email})
+if(user){
+    return res.status(400).render("signup",{error:"User with this email already exists",body:req.body})
+}
+//hasing the password
 let hashedpassword = await bcrypt.hash(req.body.password,11)
 }catch(err){
     return res.status(500).render("500")
 }
-//check if user already exists
+
 //hash password
 //store in db
 //bcrypt
