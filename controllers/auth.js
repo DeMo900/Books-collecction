@@ -30,6 +30,7 @@ req.body.password = hashedpassword
 //storing the user
 const nuser =  new um(req.body)
 await nuser.save()
+return res.redirect("/signup")
 //loging the error and redirecting to the error page
 }catch(err){
     console.log(err)
@@ -49,7 +50,7 @@ try{
     let user = await um.findOne({email : req.body.email})
     if (!user){
         console.log("user doesn't exist")
-        return res.status(400).render("signin",{error:`user doesn't exist, signup first`})
+        return res.status(400).render("signin",{error:`user doesn't exist, signup first`,body:req.body})
     }
     let compare = await bcrypt.compare(req.body.password,user.password)
     if(!compare){

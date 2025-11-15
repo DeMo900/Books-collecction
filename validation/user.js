@@ -2,7 +2,7 @@
 const joi = require("joi")
 
 
-const data = (body,option)=>{
+const data = (body,type)=>{
     //signup schema
      const signupschema = joi.object({
 username:joi.string().min(3).max(25).pattern(/^[A-Za-z0-9._\- ]+$/).required().messages({
@@ -44,12 +44,10 @@ password :joi.string().min(8).max(80).pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?
 "any.required":"Password is required"
 })
 })
-if(option === "signup"){
-    return signupschema.validate(body)
-}
-     if(option === "signin"){
-    return signinschema.validate(body)
-}
+if(type === "signup")  return signupschema.validate(body)
+
+     if(type === "signin")  return signinschema.validate(body)
+
 
 }
 module.exports = data
