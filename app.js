@@ -32,7 +32,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("assets"));
 app.set("view engine", "ejs");
-//app.use(session({secret:"my secret",resave:false,saveUninitialized:false}));
+app.use(session({secret:process.env.SECRET,resave:false,saveUninitialized:false}));
+app.use("/home",(req,res,next)=>{
+  if(!req.session.user){
+      return res.status(401).render("500");
+  }
+  next()
+})
 app.use(homerouter);
 //database connection
 mongodb

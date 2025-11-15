@@ -56,6 +56,9 @@ try{
         console.log("password doesn't match")
       return  res.status(400).render("signin",{error:"wrong password!",body:req.body})
     }
+    req.session.user = {email:req.body.email,
+        id:user._id
+    }
 return res.redirect("/")
 }catch(error){
     console.log (error)
