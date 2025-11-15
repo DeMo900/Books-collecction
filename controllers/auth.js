@@ -9,12 +9,12 @@ res.render("signup")
 }
 //Get signin
 exports.Getsignin = (req,res)=>{
-res.render("signin")
+res.render("signin",{error:undefined,body:undefined})
 }
 //POST signup
 exports.Postsignup = async(req,res)=>{
 //validate data
-const {error} = validate(req.body)
+const {error} = validate(req.body,"signup")
 if(error){
     return res.status(400).render("signup",{error:error.details[0].message,body:req.body})
 }
@@ -37,6 +37,28 @@ await nuser.save()
 }
 }
 //POST signin
-exports.Postsignin = (req,res)=>{
-
+exports.Postsignin = async(req,res)=>{
+//validation
+const {error} = validate({email:req.body.email,password:req.body.password},"signin")
+if(error){
+    console.log(error)
+    return res.status(400).render("signin",{error:error.details[0].message,body:req.body})
+}
+//chcking if user exists
+try{
+    let user = await um.findOne({email : req.body.email})
+    if (!user){
+        console.log("user doesn't exist")
+        return res.status(400).render("signin",{error:`user doesn't exist, signup first`})
+    }
+    let compare = await bcrypt.compare(req.body.password,user.password)
+    if(!compare){
+        console.log("password doesn't match")
+      return  res.status(400).render("signin",{error:"wrong password!",body:req.body})
+    }
+return res.redirect("/")
+}catch(error){
+    console.log (error)
+    return res.status(500).render(500)
+}
 }
