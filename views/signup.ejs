@@ -15,13 +15,14 @@
   <section class="form-section">
     <form class="form-card" action="/signup" method="POST">
       <h3>Sign Up</h3>
-      <input type="text" name="username"placeholder="Full Name" value="<%=body.username%>" required>
-      <input type="email" name="email" placeholder="Email Address" value="<%=body.email%>" required>
-      <input type="password" name="password" placeholder="Password" value="<%=body.password%>" required>
-      <input type="password" name="confirmpassword" value="<%=body.confirmpassword%>" required>
+      <input type="text" name="username"placeholder="Full Name" value="<%=typeof body !=="undefined"?body.username:""%>" required>
+      <input type="email" name="email" placeholder="Email Address" value="<%=typeof body !=="undefined"?body.email:""%>" required>
+      <input type="password" name="password" placeholder="Password" value="<%=typeof body !=="undefined"?body.password:""%>" required>
+      <input type="password" name="confirmpassword" value="<%=typeof body !=="undefined"?body.confirmpassword:""%>" required>
       <button type="submit">Sign Up</button>
       <p class="switch">Already have an account? <a href="/signin">Login</a></p>
-      <p class="error"><%=error%></p>
+      <p class="error"><%=typeof error !== "undefined"?error:""%></p>
+    
     </form>
   </section>
 
