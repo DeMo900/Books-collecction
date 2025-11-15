@@ -26,14 +26,15 @@ if(user){
 }
 //hasing the password
 let hashedpassword = await bcrypt.hash(req.body.password,11)
+req.body.password = hashedpassword
+//storing the user
+const nuser =  new um(req.body)
+await nuser.save()
+//loging the error and redirecting to the error page
 }catch(err){
+    console.log(err)
     return res.status(500).render("500")
 }
-
-//hash password
-//store in db
-//bcrypt
-
 }
 //POST signin
 exports.Postsignin = (req,res)=>{
