@@ -9,7 +9,7 @@ const books = require("/home/adam/coding/Books-collecction/controllers/books.js"
 //add book
 const addbook = require("/home/adam/coding/Books-collecction/controllers/add-books.js")
 //auth
-const { Getsignup , Getsignin , Postsignup , Postsignin } = require("../controllers/auth");
+const { Getsignup , Getsignin , Postsignup , Postsignin , logout } = require("../controllers/auth");
 //errors
 const errors = require("/home/adam/coding/Books-collecction/controllers/errors.js");
 /////////////////////////////////////
@@ -33,6 +33,7 @@ router.get("/signup",Getsignup)
 router.get("/signin",Getsignin)
 router.post("/signup",Postsignup)
 router.post("/signin",Postsignin)
+router.post("/logout",logout)
 //errors
 router.get("/500",errors.get500)
 //about 

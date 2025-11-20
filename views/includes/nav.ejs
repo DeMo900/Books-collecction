@@ -18,7 +18,20 @@
     }
 
     
-
+.logout{
+  color:#eee;
+  background-color: rgba(255, 255, 255, 0.1);;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+       border-radius: 25px;
+       font-size: 0.8rem;
+      font-weight: 600;
+}
+.logout:hover{
+     transform: rotateX(10deg) rotateY(-10deg) scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 10px 30px rgba(255, 111, 145, 0.4);
+}
     /* + Add Button */
     .add-btn {
       display: flex;
@@ -81,5 +94,8 @@
       <button class="add-btn" onclick="window.location.href='/books/add-book'">
         <span class="plus">+</span> Add
       </button>
+      <form action="/logout" method="POST">
+      <button class="logout" type="submit">Logout</button>
+    </form>
     </nav>
   </header>

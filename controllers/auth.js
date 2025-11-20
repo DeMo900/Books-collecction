@@ -20,7 +20,7 @@ if(error){
 }
 //check if user already exists
 try{
-let user = await um.findOne({email:req.body.email})
+let user = await um.findOne({email:req.body.email})//finding
 if(user){
     return res.status(400).render("signup",{error:"User with this email already exists",body:req.body})
 }
@@ -29,8 +29,8 @@ let hashedpassword = await bcrypt.hash(req.body.password,11)
 req.body.password = hashedpassword
 //storing the user
 const nuser =  new um(req.body)
-await nuser.save()
-return res.redirect("/signup")
+await nuser.save()//saving
+return res.redirect("/signup")//redirecting
 //loging the error and redirecting to the error page
 }catch(err){
     console.log(err)
@@ -52,17 +52,29 @@ try{
         console.log("user doesn't exist")
         return res.status(400).render("signin",{error:`user doesn't exist, signup first`,body:req.body})
     }
+    //checking if password is correct
     let compare = await bcrypt.compare(req.body.password,user.password)
     if(!compare){
         console.log("password doesn't match")
       return  res.status(400).render("signin",{error:"wrong password!",body:req.body})
     }
+    //creating session 
     req.session.user = {email:req.body.email,
         id:user._id
     }
+    //redirecting
 return res.redirect("/")
 }catch(error){
     console.log (error)
     return res.status(500).render(500)
 }
+}
+exports.logout=async(req,res)=>{
+    try{
+   await req.session.destroy()
+    return res.render("signin",{error:"sucsessfully logged you out!",body:{}})
+    }catch(error){
+        console.log(`error while destroying`)
+        return res.status(500).render("500")
+    }
 }
