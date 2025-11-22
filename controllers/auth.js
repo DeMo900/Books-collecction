@@ -103,7 +103,7 @@ await transport.sendMail({
   subject: "Here is your url to reset your password", 
   text: code, 
 })
-}catch(err){
+}catch(err){//handling errors
     console.log(err)
     return res.render("500")
 }
