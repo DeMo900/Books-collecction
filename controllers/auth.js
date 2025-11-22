@@ -3,6 +3,9 @@ const um = require("../models/user")
 const bcrypt = require("bcrypt")
 const validate = require("../validation/user")
 const { body,validationResult } = require("express-validator")
+const mail = require("nodemailer")
+const crypto = require("crypto")
+
 //GET signup
 exports.Getsignup = (req,res)=>{
 res.render("signup")
@@ -81,8 +84,25 @@ let found = await um.findOne({email:req.body.email})
 if(!found){
   return  console.log("email doesn't exist signup")
 }
-//creating transport
-
+//generating code
+let code = crypto.randomBytes(16).toString("hex") 
+//storing the code
+req.session.code=code
+console.log(req.session)
+//sending the email
+let transport = mail.createTransport({//creating transport
+    service:"gmail",
+    auth:{
+        user:"proplayer524522@gmail.com",
+        pass:process.env.APPCODE
+    }
+})
+//sending
+await transport.sendMail({
+  to: req.body.email,
+  subject: "Here is your url to reset your password", 
+  text: code, 
+})
 }catch(err){
     console.log(err)
     return res.render("500")
