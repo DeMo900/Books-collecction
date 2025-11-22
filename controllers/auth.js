@@ -2,7 +2,7 @@
 const um = require("../models/user")
 const bcrypt = require("bcrypt")
 const validate = require("../validation/user")
-const { body } = require("express-validator")
+const { body,validationResult } = require("express-validator")
 //GET signup
 exports.Getsignup = (req,res)=>{
 res.render("signup")
@@ -69,6 +69,28 @@ return res.redirect("/")
     return res.status(500).render(500)
 }
 }
+//forgotpassword
+exports.Postforgotpassword = async (req,res)=>{
+//validating the input
+try{
+const results= validationResult(req)
+if(!results.isEmpty()){
+ return console.log(results.errors[0].msg)
+}
+let found = await um.findOne({email:req.body.email})
+if(!found){
+  return  console.log("email doesn't exist signup")
+}
+//creating transport
+
+}catch(err){
+    console.log(err)
+    return res.render("500")
+}
+}
+
+
+//logout
 exports.logout=async(req,res)=>{
     try{
    await req.session.destroy()
