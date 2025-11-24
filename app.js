@@ -3,6 +3,7 @@ const express = require("express");
 const mongodb = require("mongoose");
 const multer = require("multer");
 const session = require("express-session");
+const store = require("connect-mongo");
 //router
 const homerouter = require("./routes/routes.js");
 require("dotenv").config();
@@ -32,7 +33,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("assets"));
 app.set("view engine", "ejs");
-app.use(session({secret:process.env.SECRET,resave:false,saveUninitialized:false}));
+app.use(session({
+  secret:process.env.SECRET,resave:false,saveUninitialized:false,
+    cookie: { secure: false,maxAge: 900000 },
+store:store.create({mongoUrl:process.env.DB_URL})
+}));
 app.use("/books",(req,res,next)=>{
   if(!req.session.user){
       return res.status(401).render("500");

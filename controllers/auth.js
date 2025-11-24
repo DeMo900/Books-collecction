@@ -87,8 +87,9 @@ if(!found){
 //generating code
 let code = crypto.randomBytes(16).toString("hex") 
 //storing the code
-req.session.code=code
-console.log(req.session)
+req.session.code={code:code,email:req.body.email}
+req.session.save()
+console.log(req.session.code)
 //sending the email
 let transport = mail.createTransport({//creating transport
     service:"gmail",
@@ -101,19 +102,48 @@ let transport = mail.createTransport({//creating transport
 await transport.sendMail({
   to: req.body.email,
   subject: "Here is your url to reset your password", 
-  text: code, 
+  text: `http://localhost:9000/update-password?code=${code}`, 
 })
+return res.send("session created"+req.session.code)
 }catch(err){//handling errors
     console.log(err)
     return res.render("500")
 }
 }
-
+//Getupdate
+exports.Getupdate = (req,res)=>{
+let {code} = req.session.code
+if(code !== req.query.code){
+return res.send("error invalid code")
+}
+res.send("authenticated")
+}
+//updating password
+exports.Putupdate = async(req,res)=>{
+let {email} = req.session.code
+try{
+//validating password
+const results = validationResult(req)
+if(!results.isEmpty()){
+    return res.status(400).send(results.errors[0].msg)
+}
+//hashing the new password
+let hashedpassword = await bcrypt.hash(req.body.password,11)
+//getting the user
+let user = await um.findOne({email:email})
+await user.updateOne({password:hashedpassword})
+return res.send("password updated sucsessfully")
+}catch(error){
+    console.log(`error while updating password ${error}`)
+    return res.status(500).render("500")
+}
+}
 
 //logout
 exports.logout=async(req,res)=>{
     try{
    await req.session.destroy()
+   res.clearCookie("connect.sid")
     return res.render("signin",{error:"sucsessfully logged you out!",body:{}})
     }catch(error){
         console.log(`error while destroying`)

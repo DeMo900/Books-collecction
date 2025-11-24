@@ -9,7 +9,7 @@ const books = require("/home/adam/coding/Books-collecction/controllers/books.js"
 //add book
 const addbook = require("/home/adam/coding/Books-collecction/controllers/add-books.js")
 //auth
-const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , logout } = require("../controllers/auth");
+const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , Putupdate , logout , Getupdate } = require("../controllers/auth");
 //errors
 const errors = require("/home/adam/coding/Books-collecction/controllers/errors.js");
 /////////////////////////////////////
@@ -31,12 +31,16 @@ body("publisyear").isLength({max:4}).isNumeric().notEmpty().withMessage("publish
 //signup and signin
 router.get("/signup",Getsignup)
 router.get("/signin",Getsignin)
+router.get("/update-password",Getupdate)
 router.post("/signup",Postsignup)
 router.post("/signin",Postsignin)
 router.post("/logout",logout)
 router.post("/forgot-password",
     body("email").isEmail().withMessage("email isn't valid")
     ,Postforgotpassword)
+    router.put("/update-password",
+     body("password").isStrongPassword().withMessage("password isn't strong enough")   
+        ,Putupdate)
 //errors
 router.get("/500",errors.get500)
 //about 
