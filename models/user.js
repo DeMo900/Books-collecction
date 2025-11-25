@@ -6,7 +6,8 @@ username:{type : String , unique : true, minlength:3 , maxlength:25 , required:t
 password:{type : String , minlength : 8 , maxlength : 80 , required : true , match : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,80}$/},
 email : {type : String , unique : true , maxlength : 50 , required : true , match : /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/},
 role:{type : String , enum : [`creator`,`user`] , default : `user` , required : true },
-createdAt:{type:Date , default:Date.now()}
+createdAt:{type:Date , default:Date.now()},
+books:[{type:mongodb.Schema.Types.ObjectId,ref:"book"}]
 })
 //modeling 
 const um = mongodb.model("user",user)

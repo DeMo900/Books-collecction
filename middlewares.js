@@ -8,7 +8,7 @@ exports.session = session({
   secret:process.env.SECRET,
   resave:false,
   saveUninitialized:false,
-    cookie: { secure: false,maxAge: 900000 },
+    cookie: { maxAge: 900000 },
 store:store.create({mongoUrl:process.env.DB_URL})
 })
 //authentication middleware

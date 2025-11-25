@@ -1,5 +1,6 @@
 
 const bm = require("/home/adam/coding/Books-collecction/models/book.js")
+const um = require("/home/adam/coding/Books-collecction/models/user.js")
 const {validationResult} = require("express-validator")
 
 
@@ -9,6 +10,7 @@ res.render("add-book",{error:"",body:""})
 }
 //create book
 exports.createbook = async(req,res)=>{
+    //validation
     try{
 let results = validationResult(req)
 console.log(req.file)
@@ -21,6 +23,7 @@ if(!results.isEmpty()){
  if (!req.cover){
     return res.render("add-book",{error:[{msg:"cover image is required"}],body:req.body})
 }
+//storing the book  
 let newbm = new bm({
  title: req.body.title,
   author: req.body.author,
@@ -31,6 +34,10 @@ let newbm = new bm({
 
 })
 await newbm.save()
+//getting the user
+let user = await um.findById(req.session.user.id)
+user.books.push(newbm._id)
+await user.save()
 console.log(`book created successfully`)
     }catch(err){
         console.log(`error from createbook \n${err}`)

@@ -131,7 +131,8 @@ if(!results.isEmpty()){
 let hashedpassword = await bcrypt.hash(req.body.password,11)
 //getting the user
 let user = await um.findOne({email:email})
-await user.updateOne({password:hashedpassword})
+user.password = hashedpassword
+await user.save()
 return res.send("password updated sucsessfully")
 }catch(error){
     console.log(`error while updating password ${error}`)
