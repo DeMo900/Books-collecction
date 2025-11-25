@@ -11,6 +11,8 @@ const books = require("/home/adam/coding/Books-collecction/controllers/books.js"
 const addbook = require("/home/adam/coding/Books-collecction/controllers/add-books.js")
 //auth
 const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , Putupdate , logout , Getupdate } = require("../controllers/auth");
+//profile
+const profile = require("../controllers/profile.js")
 //errors
 const errors = require("/home/adam/coding/Books-collecction/controllers/errors.js");
 /////////////////////////////////////
@@ -42,6 +44,8 @@ router.post("/forgot-password",
     router.put("/update-password",
      body("password").isStrongPassword().withMessage("password isn't strong enough")   
         ,Putupdate)
+        //profile
+router.get("/profile",profile.Getprofile)
 //errors
 router.get("/500",errors.get500)
 //about 

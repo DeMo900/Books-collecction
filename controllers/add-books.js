@@ -20,7 +20,7 @@ if(!results.isEmpty()){
   return  res.render("add-book",{error:results.array(),body:req.body})
    // return res.status(422).render("add-book",{errors:results.array()})
 }
- if (!req.cover){
+ if (!req.body.cover){
     return res.render("add-book",{error:[{msg:"cover image is required"}],body:req.body})
 }
 //storing the book  
