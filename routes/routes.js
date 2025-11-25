@@ -10,7 +10,7 @@ const books = require("/home/adam/coding/Books-collecction/controllers/books.js"
 //add book
 const addbook = require("/home/adam/coding/Books-collecction/controllers/add-books.js")
 //auth
-const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , Putupdate , logout , Getupdate } = require("../controllers/auth");
+const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , Putupdate , forgotpassword , logout , Getupdate } = require("../controllers/auth");
 //profile
 const profile = require("../controllers/profile.js")
 //errors
@@ -35,6 +35,7 @@ middlewares.check,addbook.createbook)
 router.get("/signup",Getsignup)
 router.get("/signin",Getsignin)
 router.get("/update-password",Getupdate)
+router.get("/forgot-password",forgotpassword)
 router.post("/signup",Postsignup)
 router.post("/signin",Postsignin)
 router.post("/logout",logout)

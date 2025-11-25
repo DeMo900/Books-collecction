@@ -72,6 +72,10 @@ return res.redirect("/")
     return res.status(500).render(500)
 }
 }
+//Getforgotpassword
+exports.forgotpassword = (req,res)=>{
+res.render("forgot-password")
+}
 //forgotpassword
 exports.Postforgotpassword = async (req,res)=>{
 //validating the input
@@ -116,7 +120,7 @@ let {code} = req.session.code
 if(code !== req.query.code){
 return res.send("error invalid code")
 }
-res.send("authenticated")
+res.render("update-password",{error:""})
 }
 //updating password
 exports.Putupdate = async(req,res)=>{
@@ -125,7 +129,7 @@ try{
 //validating password
 const results = validationResult(req)
 if(!results.isEmpty()){
-    return res.status(400).send(results.errors[0].msg)
+    return res.status(400).render("update-password",{error:results.errors[0].msg})
 }
 //hashing the new password
 let hashedpassword = await bcrypt.hash(req.body.password,11)
