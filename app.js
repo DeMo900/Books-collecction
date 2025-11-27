@@ -3,6 +3,7 @@ const express = require("express");
 const mongodb = require("mongoose");
 const multer = require("multer");
 const middlewares = require("./middlewares.js");
+const passport = require("passport");
 //router
 const homerouter = require("./routes/routes.js");
 require("dotenv").config();
@@ -16,6 +17,8 @@ app.use(express.static("assets"));
 app.set("view engine", "ejs");
 app.use(middlewares.session)
 app.use(homerouter);
+app.use(passport.initialize());
+app.use(passport.session());
 //database connection
 mongodb
   .connect(

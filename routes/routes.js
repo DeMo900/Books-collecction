@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const middlewares = require("../middlewares.js")
 const {body} = require("express-validator")
+const passport = require("passport");
+const OAuth2Strategy = require("passport-oauth2").Strategy;
 //home
 const homecontroller = require("/home/adam/coding/Books-collecction/controllers/home")
 //books
@@ -11,6 +13,8 @@ const books = require("/home/adam/coding/Books-collecction/controllers/books.js"
 const addbook = require("/home/adam/coding/Books-collecction/controllers/add-books.js")
 //auth
 const { Getsignup , Getsignin , Postsignup , Postsignin , Postforgotpassword , Putupdate , forgotpassword , logout , Getupdate } = require("../controllers/auth");
+//oauth2
+const {page,fail,sucsess} = require("../controllers/oauth2.js")
 //profile
 const profile = require("../controllers/profile.js")
 //errors
@@ -45,6 +49,9 @@ router.post("/forgot-password",
     router.put("/update-password",
      body("password").isStrongPassword().withMessage("password isn't strong enough")   
         ,Putupdate)
+//google oauth2
+router.get("/auth/google",page);//askingfor the required data
+router.get("/auth/google/callback",fail,sucsess);//callback route
         //profile
 router.get("/profile",profile.Getprofile)
 //errors
