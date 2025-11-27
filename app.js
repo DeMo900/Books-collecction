@@ -4,6 +4,7 @@ const mongodb = require("mongoose");
 const multer = require("multer");
 const middlewares = require("./middlewares.js");
 const passport = require("passport");
+const helmet = require("helmet");
 //router
 const homerouter = require("./routes/routes.js");
 require("dotenv").config();
@@ -19,6 +20,7 @@ app.use(middlewares.session)
 app.use(homerouter);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(helmet())
 //database connection
 mongodb
   .connect(
